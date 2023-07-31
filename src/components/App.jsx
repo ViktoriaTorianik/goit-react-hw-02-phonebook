@@ -1,14 +1,23 @@
 import { Component } from 'react';
 import React from 'react';
 import Form from './Form/Form';
+import Filter from './Filter/Filter';
+import Contacts from './Contact/Contact';
+import initialContacts from './contactes.json';
 class App extends Component {
   state = {
-    contacts: [],
+    contacts: initialContacts,
   };
   formSubmitHendler = data => {
     console.log(data);
   };
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
   render() {
+    const { contacts } = this.state;
     return (
       <div>
         <div>
@@ -17,10 +26,11 @@ class App extends Component {
         </div>
         <div>
           <h2>Contacts</h2>
-          <ul>
-            <li> Rosie Simpson </li>
-            <li> Hermione Kline</li>
-          </ul>
+          <Filter></Filter>
+          <Contacts
+            contacts={contacts}
+            onDeleteContact={this.deleteContact}
+          ></Contacts>
         </div>
       </div>
     );
