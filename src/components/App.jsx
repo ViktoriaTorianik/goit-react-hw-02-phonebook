@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import React from 'react';
-import Form from './Form/Form.styled';
+import Form from './Form/Form';
 class App extends Component {
   state = {
     contacts: [],

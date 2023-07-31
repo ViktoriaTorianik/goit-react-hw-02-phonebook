@@ -1,38 +1,35 @@
-import { Component } from 'react';
-
-class Form extends Component {
-  state = {
-    name: '',
-  };
-  handlNameChange = e => {
-    this.setState({ name: e.currentTarget.value });
-  };
-
-  handlSubmit = e => {
-    e.preventDefault();
-    console.log(this.state);
-    this.props.onSubmit(this.state);
-    this.reset();
-  };
-  reset = () => this.setState({ name: '' });
-  render() {
-    return (
-      <form action="" onSubmit={this.handlSubmit}>
-        <label htmlFor="">
-          Name
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.handlNameChange}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-        </label>
-        <button type="submit">Add contact</button>
-      </form>
-    );
+import styled from '@emotion/styled';
+export const FormEl = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+export const Input = styled.input`
+  width: 350px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16);
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+`;
+export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px 5px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16);
+  :focus,
+  :hover {
+    color: rgba(0, 0, 0, 0.3);
   }
-}
-export default Form;
+`;
+
+export const Span = styled.span`
+  display: flex;
+  margin-bottom: 3px;
+`;
