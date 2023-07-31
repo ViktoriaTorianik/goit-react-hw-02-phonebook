@@ -6,8 +6,8 @@ class Form extends Component {
     number: '',
   };
   handlInputChange = e => {
-    const { name, number } = e.currentTarget;
-    this.setState({ [e.currentTarget.name]: e.currentTarget.value });
+    const { name, value } = e.currentTarget;
+    this.setState({ [name]: value });
   };
 
   handlSubmit = e => {
