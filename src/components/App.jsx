@@ -23,16 +23,27 @@ class App extends Component {
     }));
     console.log(data);
   };
+
   formSubmitHendler = data => {
     console.log(data);
   };
+
   deleteContact = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
+
+  chengeFilter = e => {
+    this.setState({ filter: e.currentTarget.value });
+  };
+
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    const visibleContacts = this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
     return (
       <div>
         <div>
@@ -44,9 +55,11 @@ class App extends Component {
         </div>
         <div>
           <h2>Contacts</h2>
-          <Filter></Filter>
+
+          <Filter value={filter} onChange={this.chengeFilter}></Filter>
+
           <Contacts
-            contacts={contacts}
+            contacts={visibleContacts}
             onDeleteContact={this.deleteContact}
           ></Contacts>
         </div>
