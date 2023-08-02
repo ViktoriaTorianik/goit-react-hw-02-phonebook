@@ -23,6 +23,7 @@ export const Button = styled.button`
   border-radius: 4px;
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16);
+  color: green;
   :focus,
   :hover {
     color: rgba(0, 0, 0, 0.3);
