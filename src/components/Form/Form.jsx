@@ -20,11 +20,12 @@ class Form extends Component {
   render() {
     const { name, number } = this.state;
     return (
-      <FormEl action="" onSubmit={this.handlSubmit}>
+      <FormEl onSubmit={this.handlSubmit}>
         <label htmlFor="">
           <Span>Name</Span>
           <Input
             type="text"
+            placeholder="Your name"
             name="name"
             value={name}
             onChange={this.handlInputChange}
@@ -37,6 +38,7 @@ class Form extends Component {
           <Span>Number</Span>
           <Input
             type="tel"
+            placeholder="Your number"
             name="number"
             value={number}
             onChange={this.handlInputChange}

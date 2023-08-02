@@ -6,13 +6,14 @@ import Form from './Form/Form';
 import Filter from './Filter/Filter';
 import Contacts from './Contact/Contact';
 import initialContacts from './contactes.json';
+
 class App extends Component {
   state = {
     contacts: initialContacts,
     filter: '',
   };
 
-  addContact = data => {
+  addContact = ({ name, number }) => {
     const contact = {
       id: shortid.generate(),
       name: '',
@@ -21,11 +22,6 @@ class App extends Component {
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts],
     }));
-    console.log(data);
-  };
-
-  formSubmitHendler = data => {
-    console.log(data);
   };
 
   deleteContact = contactId => {
@@ -48,10 +44,7 @@ class App extends Component {
       <div>
         <div>
           <h1>Phonebook</h1>
-          <Form
-            onSubmit={this.formSubmitHendler}
-            addContact={this.addContact}
-          />
+          <Form onSubmit={this.addContact} />
         </div>
         <div>
           <h2>Contacts</h2>
