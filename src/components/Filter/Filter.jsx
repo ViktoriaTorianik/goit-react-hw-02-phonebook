@@ -1,5 +1,5 @@
 import { Input } from 'components/Form/Form.styled';
-import { FormFilter } from './Filter.styled';
+// import { FormFilter } from './Filter.styled';
 const Filter = ({ value, onChange }) => {
   return (
     <label htmlFor="">
