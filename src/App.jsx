@@ -1,10 +1,10 @@
 import { Component } from 'react';
 import React from 'react';
 import shortid from 'shortid';
-
-import Form from './Form/Form';
-import Filter from './Filter/Filter';
-import Contacts from './Contact/Contact';
+import { Title, Container } from './components/App/App.styled';
+import Form from './components/Form/Form';
+import Filter from './components/Filter/Filter';
+import Contacts from './components/Contact/Contact';
 import initialContacts from './contactes.json';
 
 class App extends Component {
@@ -14,10 +14,24 @@ class App extends Component {
   };
 
   addContact = ({ name, number }) => {
+    const normalizedName = name.toLowerCase();
+
+    let isAdded = false;
+    this.state.contacts.forEach(el => {
+      if (el.name.toLowerCase() === normalizedName) {
+        alert(`${name}: is already in contacts`);
+        isAdded = true;
+      }
+    });
+
+    if (isAdded) {
+      return;
+    }
+
     const contact = {
       id: shortid.generate(),
-      name: '',
-      number: '',
+      name,
+      number,
     };
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts],
@@ -41,22 +55,19 @@ class App extends Component {
       contact.name.toLowerCase().includes(normalizedFilter)
     );
     return (
-      <div>
-        <div>
-          <h1>Phonebook</h1>
-          <Form onSubmit={this.addContact} />
-        </div>
-        <div>
-          <h2>Contacts</h2>
+      <Container>
+        <Title>Phonebook</Title>
+        <Form onSubmit={this.addContact} />
 
-          <Filter value={filter} onChange={this.chengeFilter}></Filter>
+        <Title>Contacts</Title>
 
-          <Contacts
-            contacts={visibleContacts}
-            onDeleteContact={this.deleteContact}
-          ></Contacts>
-        </div>
-      </div>
+        <Filter value={filter} onChange={this.chengeFilter}></Filter>
+
+        <Contacts
+          contacts={visibleContacts}
+          onDeleteContact={this.deleteContact}
+        />
+      </Container>
     );
   }
 }
