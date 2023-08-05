@@ -48,10 +48,7 @@ class App extends Component {
     this.setState({ filter: e.currentTarget.value });
   };
   componentDidUpdate(prevProps, prevState) {
-    console.log(prevState);
-    console.log(this.state);
     if (this.state.contacts !== prevState.contacts) {
-      console.log('оновилось');
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
   }
