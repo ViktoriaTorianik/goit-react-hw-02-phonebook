@@ -47,7 +47,22 @@ class App extends Component {
   chengeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevState);
+    console.log(this.state);
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('оновилось');
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
 
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
   render() {
     const { filter } = this.state;
     const normalizedFilter = filter.toLowerCase();
